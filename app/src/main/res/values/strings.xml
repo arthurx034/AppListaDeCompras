@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AppListaCompras</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="nome_do_item">nome do item</string>
+    <string name="minha_lista_de_compras">Minha Lista de Compras</string>
+    <string name="preco_do_item">preco do item (Apenas numeros)</string>
+    <string name="quantidade_de_itens">Quantidade de itens:</string>
+    <string name="valor_da_lista">Valor da lista:</string>
+</resources>
