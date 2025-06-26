@@ -66,6 +66,20 @@ public class MainActivity extends AppCompatActivity {
                     if (!itemName.isEmpty() && price > 0) {
                         lista.adicionarItem(itemName + " - " + "R$ " + price);
                     }
+                    if (itemName.isEmpty()) {
+                        Toast.makeText(this, "O campo de nome está vazio", Toast.LENGTH_SHORT).show();
+                    }
+                    textViewQuantidade.setText(String.valueOf(lista.getItens().size()));
+                    double total = 0;
+                    for (String item : lista.getItens()) {
+                        String[] parts = item.split(" - ");
+                        if (parts.length == 2) {
+                            String priceString = parts[1].replace("R$ ", "");
+                            double itemPriceDouble = Double.parseDouble(priceString);
+                            total += itemPriceDouble;
+                        }
+                        textViewValor.setText("R$ " + String.format("%.2f", total));
+                    }
                 } catch (NumberFormatException e) {
                     Toast.makeText(this, "Digite um valor numérico válido (ex: 12.50)", Toast.LENGTH_SHORT).show();
                 }
@@ -84,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
             lista.getItens().clear();
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lista.getItens());
             listView.setAdapter(adapter);
+            textViewQuantidade.setText("0000");
+            textViewValor.setText("R$ 0,00");
         });
 
         listView.setOnItemLongClickListener((parent, view, position, id) -> {
