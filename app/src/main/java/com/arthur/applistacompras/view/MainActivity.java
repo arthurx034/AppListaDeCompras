@@ -106,7 +106,18 @@ public class MainActivity extends AppCompatActivity {
             lista.removerItem(lista.getItens().get(position));
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lista.getItens());
             listView.setAdapter(adapter);
-            return false;
+            textViewQuantidade.setText(String.valueOf(lista.getItens().size()));
+            double total = 0;
+            for (String item : lista.getItens()) {
+                String[] parts = item.split(" - ");
+                if (parts.length == 2) {
+                    String priceString = parts[1].replace("R$ ", "");
+                    double itemPriceDouble = Double.parseDouble(priceString);
+                    total += itemPriceDouble;
+                }
+                textViewValor.setText("R$ " + String.format("%.2f", total));
+            }
+            return true;
         });
 
 
